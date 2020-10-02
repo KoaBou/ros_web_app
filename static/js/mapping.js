@@ -1,9 +1,17 @@
 var navigation = false;
 var pathed = false;
 var homing = false;
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 var waypointClicked = false;
 var MAP_WIDTH = 800;
 var MAP_HEIGHT = window.innerHeight - 62;
+=======
+var robotvisible =false;
+var robotvisiblenav =false;
+var waypointClicked = false;
+var MAP_WIDTH = (window.innerWidth)*0.65;
+var MAP_HEIGHT = window.innerHeight - (window.innerHeight)*0.08;
+>>>>>>> Fixed mapping bugs
 $body = $("body");
 $(document).ready(function() {
     var ros = new ROSLIB.Ros({
@@ -19,12 +27,21 @@ $(document).ready(function() {
 
 
 
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
     gridClient = new NAV2D.OccupancyGridClientNav({
+=======
+    var gridClient = new NAV2D.OccupancyGridClientNav({
+>>>>>>> Fixed mapping bugs
         ros: ros,
         rootObject: viewer.scene,
         viewer: viewer,
         serverName: '/move_base',
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
         continuous: true
+=======
+        continuous: true,
+        mapping:true
+>>>>>>> Fixed mapping bugs
     });
 
     var pan = new ROS2D.PanView({
@@ -83,6 +100,10 @@ $(document).ready(function() {
                 type: 'POST',
                 data: mapname,
                 success: function(response) {
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
+=======
+                    window.location ="/mapping";
+>>>>>>> Fixed mapping bugs
                     console.log(response);
                 },
                 error: function(error) {
@@ -172,9 +193,14 @@ $(document).ready(function() {
     });
 
     $("#index-list-map").click(function(event) {
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
         console.log(event)
         console.log("clcked dodo")
+=======
+        // localStorage["key"] = event.target.innerHTML;
+        document.cookie =  event.target.innerHTML  ;    
+>>>>>>> Fixed mapping bugs
         $('#exampleModal').modal('hide');
         $.ajax({
             url: '/mapping/cutmapping',
@@ -188,7 +214,11 @@ $(document).ready(function() {
                         console.log(response.mapcount);
                         if (response.mapcount > 0) {
                             $body.addClass("loading");
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
+=======
+                           
+>>>>>>> Fixed mapping bugs
                             $.ajax({
                                 url: '/index/gotonavigation',
                                 type: 'POST',

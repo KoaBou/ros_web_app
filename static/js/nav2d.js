@@ -3,6 +3,11 @@ var NAV2D = NAV2D || {
     REVISION: '0.3.0'
 };
 
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
+=======
+var robotvisible =false;
+var count =null;
+>>>>>>> Fixed mapping bugs
 
 
 
@@ -27,6 +32,7 @@ NAV2D.ImageMapClientNav = function(options) {
         image: image
     });
     client.on('change', function() {
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
         // that.navigator = new NAV2D.Navigator({
         //     ros: that.ros,
@@ -35,6 +41,17 @@ NAV2D.ImageMapClientNav = function(options) {
         //     rootObject: that.rootObject,
         //     withOrientation: that.withOrientation
         // });
+=======
+        robotvisiblenav =true;
+
+        that.navigator = new NAV2D.Navigator({
+            ros: that.ros,
+            serverName: that.serverName,
+            actionName: that.actionName,
+            rootObject: that.rootObject,
+            withOrientation: that.withOrientation
+        });
+>>>>>>> Fixed mapping bugs
 
         // scale the viewer to fit the map
 
@@ -92,6 +109,10 @@ NAV2D.Navigator = function(options) {
     function sendGoal(pose) {
         var targetPath;
 
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
+=======
+
+>>>>>>> Fixed mapping bugs
         var goal = new ROSLIB.Goal({
             actionClient: actionClient,
             goalMessage: {
@@ -106,7 +127,10 @@ NAV2D.Navigator = function(options) {
 
         goal.send();
 
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
         console.log("hiii");
+=======
+>>>>>>> Fixed mapping bugs
 
         var goalMarker = new ROS2D.NavigationArrow({
             size: 15,
@@ -130,8 +154,12 @@ NAV2D.Navigator = function(options) {
     }
 
     // get a handle to the stage
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
     console.log(homing);
     console.log(navigation);
+=======
+    
+>>>>>>> Fixed mapping bugs
     var stage;
 
     if (that.rootObject instanceof createjs.Stage) {
@@ -151,7 +179,16 @@ NAV2D.Navigator = function(options) {
     // wait for a pose to come in first
     robotMarker.visible = false;
 
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
     this.rootObject.addChild(robotMarker);
+=======
+    count=count+1
+    if (count == 1){
+        that.rootObject.addChild(robotMarker);
+        robotvisible=false;
+    }
+  
+>>>>>>> Fixed mapping bugs
 
     var initScaleSet = false;
 
@@ -239,8 +276,13 @@ NAV2D.Navigator = function(options) {
             } else if (mouseState === 'move') {
                 // remove obsolete orientation marker
                 that.rootObject.removeChild(orientationMarker);
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
                 if (mouseDown === true) {
+=======
+                if (mouseDown === true) {
+
+>>>>>>> Fixed mapping bugs
                     // if mouse button is held down:
                     // - get current mouse position
                     // - calulate direction between stored <position> and current position
@@ -273,10 +315,17 @@ NAV2D.Navigator = function(options) {
                     orientationMarker.rotation = thetaDegrees;
                     orientationMarker.scaleX = 1.0 / stage.scaleX;
                     orientationMarker.scaleY = 1.0 / stage.scaleY;
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
                     if (navigation == true || homing == true) {
 
                         that.rootObject.addChild(orientationMarker);
                     }
+=======
+                    
+
+                        that.rootObject.addChild(orientationMarker);
+                  
+>>>>>>> Fixed mapping bugs
                 }
             } else if (mouseDown) { // mouseState === 'up'
                 // if mouse button is released
@@ -285,6 +334,10 @@ NAV2D.Navigator = function(options) {
                 // - set pose with orientation
                 // - send goal
                 mouseDown = false;
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
+=======
+                
+>>>>>>> Fixed mapping bugs
 
                 var goalPos = stage.globalToRos(event.stageX, event.stageY);
 
@@ -318,17 +371,34 @@ NAV2D.Navigator = function(options) {
                 // send the goal
                 if (navigation == true) {
                     sendGoal(pose);
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
                 }
                 if (homing == true) {
                     homefunc(pose);
                 }
 
                 navigation = false;
+=======
+
+
+                }
+                if (homing == true) {
+                    homefunc(pose);
+                           
+                }
+
+                navigation = false;
+                
+>>>>>>> Fixed mapping bugs
             }
 
         } else {
             if (!homing && !navigation) {
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
+=======
+                console.log("5")
+>>>>>>> Fixed mapping bugs
 
                 if (mouseState === 'down' && typeof pane === "function") {
 
@@ -340,8 +410,15 @@ NAV2D.Navigator = function(options) {
                     panflag = false;
 
                 } else if (mouseState === 'move' && typeof pane === "function") {
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
                     that.rootObject.removeChild(orientationMarker);
 
+=======
+                    mouseDown = false;
+                    that.rootObject.removeChild(orientationMarker);
+
+
+>>>>>>> Fixed mapping bugs
                     if (panflag) {
                         paned(event.stageX, event.stageY);
                     }
@@ -349,13 +426,20 @@ NAV2D.Navigator = function(options) {
             }
         }
     };
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
+=======
+>>>>>>> Fixed mapping bugs
     this.rootObject.addEventListener('stagemousedown', function(event) {
         pannavfunction(event, 'down');
         that.rootObject.addEventListener('stagemousemove', function(event) {
             pannavfunction(event, 'move');
 
         });
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
+=======
+
+>>>>>>> Fixed mapping bugs
     });
 
     this.rootObject.addEventListener('stagemouseup', function(event) {
@@ -371,6 +455,10 @@ NAV2D.OccupancyGridClientNav = function(options) {
     this.ros = options.ros;
     var topic = options.topic || '/map';
     var continuous = options.continuous;
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
+=======
+    var mapping =options.mapping;
+>>>>>>> Fixed mapping bugs
     this.serverName = options.serverName || '/move_base';
     this.actionName = options.actionName || 'move_base_msgs/MoveBaseAction';
     this.rootObject = options.rootObject || new createjs.Container();
@@ -386,6 +474,10 @@ NAV2D.OccupancyGridClientNav = function(options) {
         topic: topic
     });
     client.on('change', function() {
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
+=======
+        mapping = true;
+>>>>>>> Fixed mapping bugs
         that.navigator = new NAV2D.Navigator({
             ros: that.ros,
             serverName: that.serverName,
@@ -398,4 +490,10 @@ NAV2D.OccupancyGridClientNav = function(options) {
         that.viewer.scaleToDimensions(client.currentGrid.width, client.currentGrid.height);
         that.viewer.shift(client.currentGrid.pose.position.x, client.currentGrid.pose.position.y);
     });
+<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 };
+=======
+};
+
+
+>>>>>>> Fixed mapping bugs
