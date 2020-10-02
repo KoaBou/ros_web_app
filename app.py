@@ -33,11 +33,7 @@ class roslaunch_process():
     @classmethod
     def start_mapping(self):
 
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
         self.process_mapping = subprocess.Popen(["roslaunch", "turtlebot3_slam", "turtlebot3_slam.launch"])
-=======
-        self.process_mapping = subprocess.Popen(["roslaunch", "--wait", "turtlebot3_slam", "turtlebot3_slam.launch"])
->>>>>>> Fixed mapping bugs
 
     @classmethod
     def stop_mapping(self):
@@ -82,11 +78,7 @@ def index():
 	        print(e)
 	
 
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 	return render_template('index.html',map = data)
-=======
-	return render_template('index.html',title='Index',map = data)
->>>>>>> Fixed mapping bugs
 
 
 
@@ -114,24 +106,15 @@ def themainroute(variable):
 	        	except Error as e:
 	            		print(e)
 	elif variable == "gotonavigation":
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 		global imagemap
 		mapname =request.get_data().decode('utf-8')
 		imagemap =mapname
-=======
-	
-		mapname =request.get_data().decode('utf-8')
-	
->>>>>>> Fixed mapping bugs
 		roslaunch_process.start_navigation(mapname)
 		
 		return "success"
 
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 	elif variable == "getimagemapname":
 		return imagemap
-=======
->>>>>>> Fixed mapping bugs
 
       
 
@@ -169,22 +152,11 @@ def deletemap():
 
 
 
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 @app.route("/navigation/gotomapping" , methods=['GET','POST'])
 def gotomapping():
 	roslaunch_process.stop_navigation()
 	time.sleep(2)
 	roslaunch_process.start_mapping()
-=======
-@app.route("/navigation/<variable>" , methods=['GET','POST'])
-def gotomapping(variable):
-	if variable == "index":
-		roslaunch_process.start_mapping()
-	elif variable == "gotomapping":		
-		roslaunch_process.stop_navigation()
-		time.sleep(2)
-		roslaunch_process.start_mapping()
->>>>>>> Fixed mapping bugs
 	return "success"
 
 
