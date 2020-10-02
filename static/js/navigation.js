@@ -1,40 +1,24 @@
 var navigation = false;
 var pathed = false;
 var homing = false;
-var parameter = false;
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-var MAP_WIDTH = (window.innerWidth)*0.65;
-var MAP_HEIGHT = window.innerHeight - (window.innerHeight)*0.08;
-var value = document.cookie;
-=======
-var robotvisiblemap =false;
 var MAP_WIDTH = (window.innerWidth)*0.65;
 var MAP_HEIGHT = window.innerHeight - (window.innerHeight)*0.08;
 var value =    document.cookie;
->>>>>>> Fixed mapping bugs
-$body = $("body");
+
 
 
 $("#drop-text").change(function() {
     alert($("#drop-text :selected").text())
 });
 $(document).ready(function() {
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-
-=======
-    // window.onload = function() {
-        
-    // }
->>>>>>> Fixed mapping bugs
-
+    $body = $("body");
     $(".dropdown-content a").click(function(event) {
         $body = $("body");
         event.preventDefault();
+        robotvisible =true;
 
-        console.log(event);
 
         value = event.target.firstChild.data
-        parameter = true;
         imageurl(value)
         $.ajax({
             url: '/navigation/loadmap',
@@ -65,21 +49,13 @@ $(document).ready(function() {
             if (message.msg == "odom received!") {
                 console.log(message.msg)
                 $body.removeClass("loading");
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-=======
-
->>>>>>> Fixed mapping bugs
             }
 
         });
     }
 
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-
-    function imageurl(value) {
-=======
     window.imageurl = function(value) {
->>>>>>> Fixed mapping bugs
+
         NAV2D.ImageMapClientNav({
             ros: ros,
             viewer: viewer,
@@ -89,11 +65,7 @@ $(document).ready(function() {
         });
     }
 
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-=======
-    
 
->>>>>>> Fixed mapping bugs
 
     var ros = new ROSLIB.Ros({
         url: 'ws://localhost:9090'
@@ -106,13 +78,8 @@ $(document).ready(function() {
         width: MAP_WIDTH,
         height: MAP_HEIGHT
     });
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
-=======
-// var kval=null;
-// kval = localStorage["key"];
-console.log(value)
->>>>>>> Fixed mapping bugs
+
 
     var imageMapClientNav = new NAV2D.ImageMapClientNav({
         ros: ros,

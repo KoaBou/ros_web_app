@@ -110,12 +110,7 @@ ROS2D.ImageMapClient = function(options) {
 
     // create an empty shape to start with
     this.currentImage = new createjs.Shape();
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-=======
 
->>>>>>> Fixed mapping bugs
-    // $body = $("body");
-    // subscribe to the topic
     var rosTopic = new ROSLIB.Topic({
         ros: ros,
         name: topic,
@@ -132,7 +127,7 @@ ROS2D.ImageMapClient = function(options) {
             image: that.image
         });
         that.rootObject.addChild(that.currentImage);
-        // $body.removeClass("loading");
+    
 
         // work-around for a bug in easeljs -- needs a second object to render correctly
         that.rootObject.addChild(new ROS2D.Grid({ size: 1 }));
@@ -153,10 +148,7 @@ ROS2D.ImageMapClient = function(options) {
         that.rootObject.addChildAt(that.currentImage, that.index);
         // that.rootObject.addChild(new ROS2D.Grid({ size: 1 }));
     }
-    // this.offClient = function(){
-    //     that.emit('offclient')
-    // }
-
+  
 };
 ROS2D.ImageMapClient.prototype.__proto__ = EventEmitter2.prototype;
 
@@ -174,10 +166,7 @@ ROS2D.ImageMapClient.prototype.__proto__ = EventEmitter2.prototype;
 ROS2D.OccupancyGrid = function(options) {
     options = options || {};
     var message = options.message;
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
-=======
->>>>>>> Fixed mapping bugs
     // internal drawing canvas
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
@@ -278,10 +267,7 @@ ROS2D.OccupancyGridClient = function(options) {
     this.rootObject.addChild(this.currentGrid);
     // work-around for a bug in easeljs -- needs a second object to render correctly
     this.rootObject.addChild(new ROS2D.Grid({ size: 1 }));
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
 
-=======
->>>>>>> Fixed mapping bugs
     // subscribe to the topic
     var rosTopic = new ROSLIB.Topic({
         ros: ros,
@@ -289,49 +275,24 @@ ROS2D.OccupancyGridClient = function(options) {
         messageType: 'nav_msgs/OccupancyGrid',
         compression: 'png'
     });
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-=======
-    // if (that.continuous){
-    //         robotvisible =true;
-    // }
->>>>>>> Fixed mapping bugs
+
 
     rosTopic.subscribe(function(message) {
         // check for an old map
         var index = null;
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
         if (that.currentGrid) {
             index = that.rootObject.getChildIndex(that.currentGrid);
             that.rootObject.removeChild(that.currentGrid);
         }
 
-=======
-        // var count = null;
-        if (that.currentGrid) {
-            index = that.rootObject.getChildIndex(that.currentGrid);
-            that.rootObject.removeChild(that.currentGrid);
-            // mapping =true;
-        }
 
-
->>>>>>> Fixed mapping bugs
         that.currentGrid = new ROS2D.OccupancyGrid({
             message: message
         });
         if (index !== null) {
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
             that.rootObject.addChildAt(that.currentGrid, index);
         } else {
             that.rootObject.addChild(that.currentGrid);
-=======
-
-            that.rootObject.addChildAt(that.currentGrid, index);
-        } else {
-
-            that.rootObject.addChild(that.currentGrid);
-            
-            // mapping=true;
->>>>>>> Fixed mapping bugs
         }
 
         that.emit('change');
@@ -340,10 +301,7 @@ ROS2D.OccupancyGridClient = function(options) {
         if (!that.continuous) {
             rosTopic.unsubscribe();
         }
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-=======
 
->>>>>>> Fixed mapping bugs
     });
 };
 ROS2D.OccupancyGridClient.prototype.__proto__ = EventEmitter2.prototype;
@@ -375,10 +333,7 @@ ROS2D.OccupancyGridSrvClient = function(options) {
     // current grid that is displayed
     this.currentGrid = null;
 
-<<<<<<< cdcf265fc16935001c0b6c59bd8d64e3b94a57a7
-=======
 
->>>>>>> Fixed mapping bugs
     // Setting up to the service
     var rosService = new ROSLIB.Service({
         ros: ros,
