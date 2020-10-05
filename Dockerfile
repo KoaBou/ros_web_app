@@ -91,15 +91,3 @@ ENV TURTLEBOT3_MODEL=waffle
 EXPOSE 5000
 
 CMD ["flask", "run"]
-
-
-
-
-
-
-
-
-
-
-
-	
