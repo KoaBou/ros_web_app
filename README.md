@@ -5,7 +5,7 @@ This is a web application that is build on Flask,serves the purpose of Mapping a
 ## Demo
 
 <div class="video-fallback">
-  See the video: <a href="https://www.youtube.com/watch?v=MqL6BMOySIQ">Video title</a>.
+  See the video: <a href="https://www.youtube.com/watch?v=JoYOW9LRdLY">Video title</a>.
 </div>
 <figure class="video-container">
   <iframe src="https://www.youtube.com/watch?v=JoYOW9LRdLY" frameborder="0" allowfullscreen="true"> </iframe>
