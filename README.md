@@ -15,7 +15,7 @@ This is a web application that is build on Flask,serves the purpose of Mapping a
 ## Prerequisite
 
 - Robotic Operating System(Kinetic) installed on Ubuntu 16.04
-- Runs on python 2.7
+- Runs on python 2.7(Run flask on python 2.7 environment)
 
 
 ## Installation
