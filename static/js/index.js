@@ -22,7 +22,7 @@ $(document).ready(function() {
                         console.log('Connected to websocket server.');
                         var rosTopic = new ROSLIB.Topic({
                             ros: ros,
-                            name: '/rosout_agg',
+                            name: '/rosout',
                             messageType: 'rosgraph_msgs/Log'
                         });
 
@@ -33,6 +33,7 @@ $(document).ready(function() {
                                 console.log(message.msg)
                                 window.location = "/mapping";
                                 $body.removeClass("loading");
+                                rosTopic.unsubscribe();
                             }
 
                         });
@@ -121,6 +122,7 @@ $(document).ready(function() {
                                             console.log(message.msg)
                                             window.location = "/navigation";
                                             $body.removeClass("loading");
+                                            rosTopic.unsubscribe();
                                         }
 
                                     });
