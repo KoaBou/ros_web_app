@@ -109,8 +109,6 @@ def themainroute(variable):
 
 		mapname =request.get_data().decode('utf-8')
 
-		mapname =request.get_data().decode('utf-8')
-
 		roslaunch_process.start_navigation(mapname)
 		
 		return "success"
