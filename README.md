@@ -4,12 +4,21 @@ This is a web application that is build on Flask,serves the purpose of Mapping a
 
 ## Demo
 
+Mapping:
+
+![alt text](mapping.png "Mapping")
+
+Navigation:
+
+![alt text](navigation.png "Navigation")
+
 <div class="video-fallback">
   See the video: <a href="https://www.youtube.com/watch?v=JoYOW9LRdLY">HERE</a>.
 </div>
 <figure class="video-container">
   <iframe src="https://www.youtube.com/watch?v=JoYOW9LRdLY" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
+
 
 
 ## Prerequisite
