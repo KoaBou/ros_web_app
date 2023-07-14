@@ -15,8 +15,8 @@ NAV2D.ImageMapClientNav = function(options) {
     this.ros = options.ros;
     var topic = options.topic || '/map_metadata';
     var image = options.image;
-    this.serverName = options.serverName || '/move_base';
-    this.actionName = options.actionName || 'move_base_msgs/MoveBaseAction';
+    this.serverName = options.serverName || '/bt_navigator';
+    this.actionName = options.actionName || '/navigate_to_pose';
     this.rootObject = options.rootObject || new createjs.Container();
     this.viewer = options.viewer;
     this.withOrientation = options.withOrientation || true;
@@ -60,8 +60,8 @@ NAV2D.Navigator = function(options) {
     var that = this;
     options = options || {};
     var ros = options.ros;
-    var serverName = options.serverName || '/move_base';
-    var actionName = options.actionName || 'move_base_msgs/MoveBaseAction';
+    var serverName = options.serverName || '/bt_navigator';  
+    var actionName = options.actionName || '/navigate_to_pose';
     var withOrientation = options.withOrientation || true;
     this.rootObject = options.rootObject || new createjs.Container();
 
@@ -76,7 +76,7 @@ NAV2D.Navigator = function(options) {
         var robot = new ROSLIB.Topic({
             ros: ros,
             name: '/initialpose',
-            messageType: 'geometry_msgs/PoseWithCovarianceStamped'
+            messageType: 'geometry_msgs/msg/PoseWithCovarianceStamped'
         });
 
         var posee = new ROSLIB.Message({ header: { frame_id: "map" }, pose: { pose: { position: { x: pose.position.x, y: pose.position.y, z: 0.0 }, orientation: { z: pose.orientation.z, w: pose.orientation.w } }, covariance: [0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.06853891945200942] } });
@@ -167,7 +167,7 @@ NAV2D.Navigator = function(options) {
     var poseListener = new ROSLIB.Topic({
         ros: ros,
         name: '/robot_pose',
-        messageType: 'geometry_msgs/Pose',
+        messageType: 'geometry_msgs/msg/Pose',
         throttle_rate: 1
     });
 
@@ -203,8 +203,8 @@ NAV2D.Navigator = function(options) {
 
         pathTopic = new ROSLIB.Topic({
             ros: ros,
-            name: '/move_base/NavfnROS/plan',
-            messageType: 'nav_msgs/Path'
+            name: '/plan',
+            messageType: 'nav_msgs/msg/Path'
         });
 
         pathTopic.subscribe(function(message) {
@@ -384,8 +384,8 @@ NAV2D.OccupancyGridClientNav = function(options) {
     this.ros = options.ros;
     var topic = options.topic || '/map';
     var continuous = options.continuous;
-    this.serverName = options.serverName || '/move_base';
-    this.actionName = options.actionName || 'move_base_msgs/MoveBaseAction';
+    this.serverName = options.serverName || '/bt_navigator';
+    this.actionName = options.actionName || '/navigate_to_pose';
     this.rootObject = options.rootObject || new createjs.Container();
     this.viewer = options.viewer;
     this.withOrientation = options.withOrientation || true;

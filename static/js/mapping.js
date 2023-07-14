@@ -7,7 +7,7 @@ var MAP_HEIGHT = window.innerHeight - (window.innerHeight)*0.08;
 $(document).ready(function() {
     $body = $("body");
     var ros = new ROSLIB.Ros({
-        url: 'ws://localhost:9090'
+        url: 'ws://127.0.0.1:9090'
     });
 
     // Create the main viewer.
@@ -23,10 +23,57 @@ $(document).ready(function() {
         ros: ros,
         rootObject: viewer.scene,
         viewer: viewer,
-        serverName: '/move_base',
+        topic: '/map',
+        // serverName: '/bt_navigator',
         continuous: true
     });
 
+    gridClient.on('change', function() {
+      viewer.scaleToDimensions(gridClient.currentGrid.width, gridClient.currentGrid.height);
+      viewer.shift(gridClient.currentGrid.pose.position.x, gridClient.currentGrid.pose.position.y);
+    });
+
+// ROBOTMARKER ----------------------------------------//
+    var robotMarker = new ROS2D.NavigationArrow({
+        size : 0.25,
+        strokeSize : 0.05,
+        pulse : true,
+        fillColor : createjs.Graphics.getRGB(255, 0, 0, 0.65)
+    });
+
+    gridClient.rootObject.addChild(robotMarker);
+
+    // var tfClient = new ROSLIB.TFClient({
+    //     ros : ros,
+    //     fixedFrame : 'map',
+    //     angularThres : 0.01,
+    //     transThres : 0.01
+    // })
+
+    // function tf_sub_func(tf) {
+    //     console.log(tf);
+    //     robotMarker.x = tf.translation.x;
+    //     robotMarker.y = -tf.translation.y;
+    //     robotMarker.rotation = new THREE.Euler().setFromQuaternion(new THREE.Quaternion(
+    //           tf.rotation.x,
+    //           tf.rotation.y,
+    //           tf.rotation.z,
+    //           tf.rotation.w
+    //           )
+    //       ).z * -180 / 3.14159;
+    //   }
+  
+    //   tfClient.subscribe('base_footprint', tf_sub_func);    
+
+    // Add robot pose and trace
+    var robotPosition = new NAV2D.PoseAndTrace({
+        ros : ros,
+        rootObject : viewer,
+        poseTopic : '/robot_pose', //do make sure the robot_pose_publisher is publishing the robot pose
+        });
+        
+    robotPosition.initScale(); 
+// END //---------------------------------------
     var pan = new ROS2D.PanView({
         ros: ros,
         rootObject: viewer.scene
@@ -101,8 +148,8 @@ $(document).ready(function() {
 
     cmd_vel_listener = new ROSLIB.Topic({
         ros: ros,
-        name: "/cmd_vel",
-        messageType: 'geometry_msgs/Twist'
+        name: "/diff_cont/cmd_vel_unstamped",
+        messageType: 'geometry_msgs/msg/Twist'
     });
 
     move = function(linear, angular) {
@@ -200,7 +247,7 @@ $(document).ready(function() {
                                     var rosTopic = new ROSLIB.Topic({
                                         ros: ros,
                                         name: '/rosout_agg',
-                                        messageType: 'rosgraph_msgs/Log'
+                                        messageType: 'rcl_interfaces/Log'
                                     });
 
                                     rosTopic.subscribe(function(message) {

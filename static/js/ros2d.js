@@ -114,7 +114,7 @@ ROS2D.ImageMapClient = function(options) {
     var rosTopic = new ROSLIB.Topic({
         ros: ros,
         name: topic,
-        messageType: 'nav_msgs/MapMetaData'
+        messageType: 'nav_msgs/msg/MapMetaData'
     });
 
     rosTopic.subscribe(function(message) {
@@ -272,8 +272,8 @@ ROS2D.OccupancyGridClient = function(options) {
     var rosTopic = new ROSLIB.Topic({
         ros: ros,
         name: topic,
-        messageType: 'nav_msgs/OccupancyGrid',
-        compression: 'png'
+        messageType: 'nav_msgs/msg/OccupancyGrid',
+        // compression: 'png'
     });
 
 
@@ -338,7 +338,7 @@ ROS2D.OccupancyGridSrvClient = function(options) {
     var rosService = new ROSLIB.Service({
         ros: ros,
         name: service,
-        serviceType: 'nav_msgs/GetMap',
+        serviceType: 'nav_msgs/srv/GetMap',
         compression: 'png'
     });
 

@@ -60,7 +60,7 @@ $(document).ready(function() {
             ros: ros,
             viewer: viewer,
             rootObject: viewer.scene,
-            serverName: '/move_base',
+            serverName: '/bt_navigator',
             image: `/static/${value}.png`
         });
     }
@@ -68,7 +68,7 @@ $(document).ready(function() {
 
 
     var ros = new ROSLIB.Ros({
-        url: 'ws://localhost:9090'
+        url: 'ws://127.0.0.1:9090'
     });
 
 
@@ -85,7 +85,7 @@ $(document).ready(function() {
         ros: ros,
         viewer: viewer,
         rootObject: viewer.scene,
-        serverName: '/move_base',
+        serverName: '/bt_navigator',
         image: `/static/${value}.png`
     });
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
         ros: ros,
         rootObject: viewer.scene,
         viewer: viewer,
-        serverName: '/move_base',
+        serverName: '/bt_navigator',
         continuous: true
     });
 

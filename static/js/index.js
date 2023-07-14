@@ -13,7 +13,7 @@ $(document).ready(function() {
                 function connect() {
 
                     var ros = new ROSLIB.Ros({
-                        url: 'ws://localhost:9090'
+                        url: 'ws://127.0.0.1:9090'
                     });
 
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
                         var rosTopic = new ROSLIB.Topic({
                             ros: ros,
                             name: '/rosout',
-                            messageType: 'rosgraph_msgs/Log'
+                            messageType: 'rcl_interfaces/msg/Log'
                         });
 
 
@@ -102,7 +102,7 @@ $(document).ready(function() {
                             function connect() {
 
                                 var ros = new ROSLIB.Ros({
-                                    url: 'ws://localhost:9090'
+                                    url: 'ws://127.0.0.1:9090'
                                 });
 
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
                                     var rosTopic = new ROSLIB.Topic({
                                         ros: ros,
                                         name: '/rosout_agg',
-                                        messageType: 'rosgraph_msgs/Log'
+                                        messageType: 'rcl_interfaces/msg/Log'
                                     });
 
 
