@@ -1,3 +1,7 @@
+## New changes (KoaBou)
+
+My version is developed to suitable with ROS2 Foxy
+
 ## A web application for Navigation and Mapping ROS
 
 This is a web application that is build on Flask,serves the purpose of Mapping and Navigation of a robot that is build on ROS from a web browser.
